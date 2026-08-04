@@ -157,6 +157,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # REST Framework settings
 REST_FRAMEWORK = {
+    # Serialize DecimalField values as JSON numbers (e.g. 75.0) instead of
+    # strings (e.g. "75.00"). The frontend calls .toFixed() on these values,
+    # which only exists on numbers and throws if given a string.
+    'COERCE_DECIMAL_TO_STRING': False,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'apps.users.authentication.CookieJWTAuthentication',
     ),
