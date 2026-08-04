@@ -7,18 +7,18 @@ import { useState, useEffect } from 'react';
 import BatchSection from '@/components/BatchSection';
 
 const galleryImages = [
-    '/gallery/gallery-1.jpg.jpeg',
-    '/gallery/gallery-2.jpg.jpeg',
-    '/gallery/gallery-3.jpg.jpeg',
-    '/gallery/gallery-4.jpg.jpeg',
-    '/gallery/gallery-5.jpg.jpeg',
-    '/gallery/gallery-6.jpg.jpeg',
-    '/gallery/gallery-7.jpg.jpeg',
-    '/gallery/gallery-8.jpg.jpeg',
-    '/gallery/gallery-9.jpg.jpeg',
-    '/gallery/gallery-10.jpg.jpeg',
-    '/gallery/gallery-11.jpg.jpeg',
-    '/gallery/gallery-12.jpg.jpeg',
+    '/Gallery/gallery-1.jpg.jpeg',
+    '/Gallery/gallery-2.jpg.jpeg',
+    '/Gallery/gallery-3.jpg.jpeg',
+    '/Gallery/gallery-4.jpg.jpeg',
+    '/Gallery/gallery-5.jpg.jpeg',
+    '/Gallery/gallery-6.jpg.jpeg',
+    '/Gallery/gallery-7.jpg.jpeg',
+    '/Gallery/gallery-8.jpg.jpeg',
+    '/Gallery/gallery-9.jpg.jpeg',
+    '/Gallery/gallery-10.jpg.jpeg',
+    '/Gallery/gallery-11.jpg.jpeg',
+    '/Gallery/gallery-12.jpg.jpeg',
 ];
 
 function HeroCarousel() {
