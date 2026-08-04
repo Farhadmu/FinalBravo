@@ -1,0 +1,118 @@
+venv/
+backend/venv/
+frontend/node_modules/
+frontend/.next/
+*.pyc
+__pycache__/
+*.sqlite3
+.env
+backend/.env
+frontend/.env
+*.log
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+coverage/
+/.idea/
+.vscode/
+/.pytest_cache/
+node_modules/
+/.serverless/
+/.parcel-cache/
+.cache/
+/.env.local
+.venv/
+/.ruff_cache/# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+backend/lib/
+backend/lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Django
+*.pot
+*.pyc
+media/
+staticfiles/
+# static/ (Removed to allow .gitkeep in backend/static)
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Next.js
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+*.env
+
+# Sensitive data and credentials
+**/credentials.json
+**/secrets.json
+**/*_credentials*
+**/*secret*
+**/database_url*
+*.env
+!*.env.example
+!.env.example
+
+# Docker
+*.log
+# .dockerignore should be tracked
+
+# Next.js
+.next/
+out/
+build/
+dist/
+next-env.d.ts
+
+# Frontend specific
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/dist/
+frontend/node_modules/
+
+# Misc
+*.bak
+*.tmp
+.cache/
+.DS_Store
+.vscode/
+.idea/

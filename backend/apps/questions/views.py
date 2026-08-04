@@ -1,0 +1,32 @@
+from rest_framework import viewsets, permissions
+from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
+from .models import Question
+from .serializers import QuestionSerializer, AdminQuestionSerializer
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    # Security Hardening: Only admins should access the question list/detail directly.
+    # Students get questions via the /api/tests/tests/{id}/start_test/ endpoint.
+    permission_classes = [permissions.IsAdminUser]
+    pagination_class = None
+    parser_classes = [JSONParser, MultiPartParser, FormParser]
+
+    def get_serializer_class(self):
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            return AdminQuestionSerializer
+        return QuestionSerializer
+
+    def get_queryset(self):
+        # Optimize query with select_related to prevent N+1 queries
+        # Use only() to fetch minimal fields for better performance
+        queryset = Question.objects.select_related('test').only(
+            'id', 'test_id', 'question_text', 'question_type', 
+            'options', 'difficulty_level', 'order', 'bank_order'
+        )
+        
+        test_id = self.request.query_params.get('test_id', None)
+        
+        if test_id is not None:
+            queryset = queryset.filter(test_id=test_id)
+        
+        return queryset.order_by('bank_order', 'order', 'created_at')
