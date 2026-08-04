@@ -32,6 +32,8 @@ interface Question {
     bank_order: number;
 }
 
+type QuestionFormData = Omit<Question, 'id'>;
+
 const emptyOptions: Option[] = [
     { id: 'a', text: '' },
     { id: 'b', text: '' },
@@ -40,13 +42,13 @@ const emptyOptions: Option[] = [
     { id: 'e', text: '' },
 ];
 
-const emptyForm = {
+const emptyForm: QuestionFormData = {
     test: '',
     question_text: '',
-    question_type: 'mcq' as const,
+    question_type: 'mcq',
     options: emptyOptions,
     correct_answer: 'a',
-    difficulty_level: 'medium' as const,
+    difficulty_level: 'medium',
     explanation: '',
     order: 0,
     bank_order: 0,
@@ -73,7 +75,7 @@ export default function AdminQuestionsPage() {
     const [loadingTests, setLoadingTests] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
-    const [formData, setFormData] = useState(emptyForm);
+    const [formData, setFormData] = useState<QuestionFormData>(emptyForm);
     const [saving, setSaving] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
     const [search, setSearch] = useState('');
