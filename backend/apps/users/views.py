@@ -199,14 +199,17 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         """
-        Soft delete: preserve payment history, just deactivate the user.
-        Student data (results, payments) will remain.
+        Hard delete: permanently remove the user and all related data
+        (test results, sessions, analytics, payment history) via CASCADE.
+        This action is irreversible.
         """
         user = self.get_object()
-        # Keep payment records by just deactivating
-        user.is_active = False
-        user.save(update_fields=['is_active'])
-        return Response({'detail': f'Student {user.username} deactivated. Payment history preserved.'}, status=status.HTTP_200_OK)
+        username = user.username
+        user.delete()
+        return Response(
+            {'detail': f'Student {username} and all related data permanently deleted.'},
+            status=status.HTTP_200_OK
+        )
 
 
 class AdminDashboardViewSet(viewsets.ViewSet):
