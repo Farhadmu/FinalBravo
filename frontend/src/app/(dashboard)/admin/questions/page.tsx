@@ -32,15 +32,7 @@ interface Question {
     bank_order: number;
 }
 
-const emptyOptions: Option[] = [
-    { id: 'a', text: '' },
-    { id: 'b', text: '' },
-    { id: 'c', text: '' },
-    { id: 'd', text: '' },
-    { id: 'e', text: '' },
-];
-
-const emptyForm: {
+type QuestionFormData = {
     test: string;
     question_text: string;
     question_type: 'mcq' | 'true_false' | 'wat';
@@ -50,7 +42,17 @@ const emptyForm: {
     explanation: string;
     order: number;
     bank_order: number;
-} = {
+};
+
+const emptyOptions: Option[] = [
+    { id: 'a', text: '' },
+    { id: 'b', text: '' },
+    { id: 'c', text: '' },
+    { id: 'd', text: '' },
+    { id: 'e', text: '' },
+];
+
+const emptyForm: QuestionFormData = {
     test: '',
     question_text: '',
     question_type: 'mcq',
@@ -83,7 +85,7 @@ export default function AdminQuestionsPage() {
     const [loadingTests, setLoadingTests] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
-    const [formData, setFormData] = useState(emptyForm);
+    const [formData, setFormData] = useState<QuestionFormData>(emptyForm);
     const [saving, setSaving] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
     const [search, setSearch] = useState('');
