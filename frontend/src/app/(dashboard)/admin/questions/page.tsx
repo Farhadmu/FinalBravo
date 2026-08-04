@@ -32,8 +32,6 @@ interface Question {
     bank_order: number;
 }
 
-type QuestionFormData = Omit<Question, 'id'>;
-
 const emptyOptions: Option[] = [
     { id: 'a', text: '' },
     { id: 'b', text: '' },
@@ -42,7 +40,17 @@ const emptyOptions: Option[] = [
     { id: 'e', text: '' },
 ];
 
-const emptyForm: QuestionFormData = {
+const emptyForm: {
+    test: string;
+    question_text: string;
+    question_type: 'mcq' | 'true_false' | 'wat';
+    options: Option[];
+    correct_answer: string;
+    difficulty_level: 'easy' | 'medium' | 'hard';
+    explanation: string;
+    order: number;
+    bank_order: number;
+} = {
     test: '',
     question_text: '',
     question_type: 'mcq',
@@ -75,7 +83,7 @@ export default function AdminQuestionsPage() {
     const [loadingTests, setLoadingTests] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
-    const [formData, setFormData] = useState<QuestionFormData>(() => emptyForm);
+    const [formData, setFormData] = useState(emptyForm);
     const [saving, setSaving] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
     const [search, setSearch] = useState('');
@@ -130,11 +138,11 @@ export default function AdminQuestionsPage() {
 
     const handleTypeChange = (type: 'mcq' | 'true_false' | 'wat') => {
         if (type === 'true_false') {
-            setFormData(prev => ({ ...prev, question_type: type, options: [{ id: 'a', text: 'True' }, { id: 'b', text: 'False' }], correct_answer: 'a' } as QuestionFormData));
+            setFormData(prev => ({ ...prev, question_type: type, options: [{ id: 'a', text: 'True' }, { id: 'b', text: 'False' }], correct_answer: 'a' }));
         } else if (type === 'wat') {
-            setFormData(prev => ({ ...prev, question_type: type, options: [], correct_answer: '' } as QuestionFormData));
+            setFormData(prev => ({ ...prev, question_type: type, options: [], correct_answer: '' }));
         } else {
-            setFormData(prev => ({ ...prev, question_type: type, options: emptyOptions, correct_answer: 'a' } as QuestionFormData));
+            setFormData(prev => ({ ...prev, question_type: type, options: emptyOptions, correct_answer: 'a' }));
         }
     };
 
